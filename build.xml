@@ -1,0 +1,33 @@
+<project name="libNTRIP" basedir=".">
+
+<target name="clean">
+	<delete dir="build" />
+</target>
+
+<target name="build" depends="generate_make, make"/>
+
+<target name="make">
+	<exec dir="build" executable="make" failonerror="true" />
+</target>
+
+<target name="install">
+	<exec failonerror="true" dir="build" executable="make">
+        <arg value="install"/>
+    </exec>
+</target>
+
+
+<target name="generate_make">
+	<mkdir dir="build" />
+	<exec dir="build" executable="cmake" failonerror="true" >
+		<arg value="-DCMAKE_INSTALL_PREFIX=${install_path}" />	
+		<arg value=".." />	
+	</exec>
+</target>
+
+
+<target name="package">
+</target>
+
+</project>
+
